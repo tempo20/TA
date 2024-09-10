@@ -16,7 +16,9 @@ fake-useragent==1.5.1
 feedparser==6.0.11
 filelock==3.15.4
 fonttools==4.53.1
+frozendict==2.4.4
 fsspec==2024.9.0
+html5lib==1.1
 huggingface-hub==0.24.6
 idna==3.8
 importlib_metadata==8.4.0
@@ -29,6 +31,7 @@ kiwisolver==1.4.7
 lxml==5.3.0
 matplotlib==3.9.2
 matplotlib-inline==0.1.7
+multitasking==0.0.11
 nest-asyncio==1.6.0
 numpy==1.26.4
 packaging==24.1
@@ -36,6 +39,7 @@ pandas==2.2.2
 pandas_ta==0.3.14b0
 parse==1.20.2
 parso==0.8.4
+peewee==3.17.6
 pillow==10.4.0
 platformdirs==4.2.2
 prompt_toolkit==3.0.47
@@ -70,6 +74,8 @@ tzdata==2024.1
 urllib3==1.26.20
 w3lib==2.2.1
 wcwidth==0.2.13
+webencodings==0.5.1
 websockets==10.4
 yahoo-fin==0.8.9.1
+yfinance==0.2.43
 zipp==3.20.1
