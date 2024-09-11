@@ -2,15 +2,7 @@ import numpy as np
 import pandas as pd
 import pandas_ta as ta
 import yfinance as yf
-
-def fetch_data(ticker, start_date, end_date, interval='1d'):
-    stock = yf.Ticker(ticker)
-    df = stock.history(start=start_date, end=end_date, interval=interval)
-    return df
-
-def simple_moving_average(df, window):
-    return df['Close'].rolling(window=window).mean()
-
+from data_prep import simple_moving_average
 # Bollinger Bands
 '''
 A measure of volitility
