@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import pandas_ta as ta
 import yfinance as yf
+from sklearn.preprocessing import StandardScaler
 
 def fetch_data(ticker, start_date, end_date, interval='1d'):
     stock = yf.Ticker(ticker)
@@ -33,3 +34,36 @@ def shift_features(df, shift_columns, shift_by=1):
 
 def simple_moving_average(df, window):
     return df['Close'].rolling(window=window).mean()
+
+def windowed_df_to_date(df):
+    dates = df['Date'].values
+    features = df.drop(['Date', 'Close'], axis=1).values
+    X = features.reshape((len(dates), features.shape[1], 1))
+    y = df['Close'].values
+    return X.astype(np.float32), y.astype(np.float32), dates
+
+def train_test_split(df, X, y, test_size=0.2):
+    X, y, dates = windowed_df_to_date(df)
+
+    q_80 = int(len(df) * 0.8)
+    q_90 = int(len(df) * 0.9)
+
+    scaler_X = StandardScaler()
+    scaler_y = StandardScaler()
+
+    X_scaled = scaler_X.fit_transform(X.reshape(-1, X.shape[-1])).reshape(X.shape)
+    y_scaled = scaler_y.fit_transform(y.reshape(-1, 1)).flatten()
+
+    dates_train = dates[:q_80]
+    dates_val = dates[q_80:q_90]
+    dates_test = dates[q_90:]
+
+    X_train = X_scaled[:q_80]
+    X_val = X_scaled[q_80:q_90]
+    X_test = X_scaled[q_90:]
+
+    y_train = y_scaled[:q_80]
+    y_val = y_scaled[q_80:q_90]
+    y_test = y_scaled[q_90:]
+    
+    return X_train, X_val, X_test, y_train, y_val, y_test, dates_train, dates_val, dates_test
