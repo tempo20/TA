@@ -7,6 +7,7 @@ https://iea.blob.core.windows.net/assets/bfdd201e-7cef-4e82-90d1-fbe5e3d8f664/Wo
 
 Forecasting the realized volatility of the Energy Stock Market: a Multimodel comparison
 https://www.sciencedirect.com/science/article/pii/S1062940823000189?via%3Dihub
+(Use School Login)
     Takeaways:
         - Here, the models used are LSTM, PCA-MLSTM, and SPCA-MLSTM
         - Realized Volatility, PCA, SPCA, LSTM, BiLSTM, GRU, and BiGRU are used.
