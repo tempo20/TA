@@ -71,4 +71,10 @@ def train_test_split(df, X, y, test_size=0.2):
 def apply_jcandle(df):
     df.loc[df['Close'] > df['Open'], 'j_candle'] = 0
     df.loc[df['Close'] < df['Open'], 'j_candle'] = 1
+    df.loc[df['j_candle'] == 0, 'high_wick_length'] = df['High'] - df['Close']
+    df.loc[df['j_candle'] == 1, 'high_wick_length'] = df['High'] - df['Open']
+    df.loc[df['j_candle'] == 0, 'low_wick_length'] = df['Close'] - df['Low']
+    df.loc[df['j_candle'] == 1, 'low_wick_length'] = df['Open'] - df['Low']
+    df['body_length'] = abs(df['Close'] - df['Open'])
+
     return df
