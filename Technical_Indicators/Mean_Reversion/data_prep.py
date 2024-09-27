@@ -67,3 +67,8 @@ def train_test_split(df, X, y, test_size=0.2):
     y_test = y_scaled[q_90:]
     
     return X_train, X_val, X_test, y_train, y_val, y_test, dates_train, dates_val, dates_test
+
+def apply_jcandle(df):
+    df.loc[df['Close'] > df['Open'], 'j_candle'] = 0
+    df.loc[df['Close'] < df['Open'], 'j_candle'] = 1
+    return df
