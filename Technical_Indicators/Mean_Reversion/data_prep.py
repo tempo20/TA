@@ -3,6 +3,7 @@ import pandas as pd
 import pandas_ta as ta
 import yfinance as yf
 from sklearn.preprocessing import StandardScaler
+import plotly.graph_objects as go
 
 def fetch_data(ticker, start_date, end_date, interval='1d'):
     stock = yf.Ticker(ticker)
@@ -78,3 +79,11 @@ def apply_jcandle(df):
     df['body_length'] = abs(df['Close'] - df['Open'])
 
     return df
+
+def visualize_candlestick(df):
+    fig = go.Figure(data=[go.Candlestick(x=df.index,
+                open=df['Open'],
+                high=df['High'],
+                low=df['Low'],
+                close=df['Close'])])
+    return fig
